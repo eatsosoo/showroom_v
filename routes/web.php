@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\PostCategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\VehicleCategoryController;
@@ -65,9 +66,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return view('pages.calender', ['title' => 'Calendar']);
         })->name('calendar');
 
-        Route::get('/profile', function () {
-            return view('pages.profile', ['title' => 'Profile']);
-        })->name('profile');
+        Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
         Route::get('/form-elements', function () {
             return view('pages.form.form-elements', ['title' => 'Form Elements']);

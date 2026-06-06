@@ -13,4 +13,9 @@ class SiteSetting extends Model
         'type',
         'label',
     ];
+
+    public static function valueFor(string $key, ?string $default = null): ?string
+    {
+        return static::where('key', $key)->value('value') ?? $default;
+    }
 }

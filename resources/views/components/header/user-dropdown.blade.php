@@ -1,3 +1,8 @@
+@php
+    $user = auth()->user();
+    $avatarUrl = $user?->avatarUrl();
+@endphp
+
 <div class="relative" x-data="{
     dropdownOpen: false,
     toggleDropdown() {
@@ -13,11 +18,15 @@
         @click.prevent="toggleDropdown()"
         type="button"
     >
-        <span class="mr-3 overflow-hidden rounded-full h-11 w-11">
-            <img src="/images/user/owner.png" alt="User" />
+        <span class="mr-3 flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-brand-50 text-sm font-semibold text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            @if ($avatarUrl)
+                <img class="h-full w-full object-cover" src="{{ $avatarUrl }}" alt="{{ $user?->name }}" />
+            @else
+                {{ $user?->initials() ?? 'U' }}
+            @endif
         </span>
 
-       <span class="block mr-1 font-medium text-theme-sm">{{ auth()->user()?->name ?? 'User' }}</span>
+       <span class="block mr-1 font-medium text-theme-sm">{{ $user?->name ?? 'User' }}</span>
 
         <!-- Chevron Icon -->
         <svg
@@ -45,8 +54,8 @@
     >
         <!-- User Info -->
         <div>
-            <span class="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">{{ auth()->user()?->name ?? 'User' }}</span>
-            <span class="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">{{ auth()->user()?->email }}</span>
+            <span class="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">{{ $user?->name ?? 'User' }}</span>
+            <span class="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">{{ $user?->email }}</span>
         </div>
 
         <!-- Menu Items -->
@@ -63,7 +72,7 @@
                                 fill="currentColor"
                             />
                         </svg>',
-                        'path' => 'profile',
+                        'path' => route('admin.profile'),
                     ],
                     [
                         'text' => 'Account settings',
@@ -75,7 +84,7 @@
                             fill="currentColor"
                         />
                         </svg>',
-                        'path' => 'chat'
+                        'path' => route('admin.profile'),
                     ],
                     [
                         'text' => 'Support',
@@ -87,7 +96,7 @@
                             fill="currentColor"
                           />
                         </svg>',
-                        'path' => 'profile'
+                        'path' => route('admin.profile'),
                     ],
                 ];
             @endphp
