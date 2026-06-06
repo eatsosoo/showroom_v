@@ -28,7 +28,7 @@ class BannerController extends Controller
     {
         Banner::create($this->validated($request));
 
-        return redirect()->route('admin.banners.index')->with('success', '膼茫 t岷 banner.');
+        return redirect()->route('admin.banners.index')->with('success', 'Đã tạo banner mới.');
     }
 
     public function edit(Banner $banner)
@@ -43,14 +43,14 @@ class BannerController extends Controller
     {
         $banner->update($this->validated($request));
 
-        return redirect()->route('admin.banners.index')->with('success', '膼茫 c岷璸 nh岷璽 banner.');
+        return redirect()->route('admin.banners.index')->with('success', 'Đã cập nhật banner.');
     }
 
     public function destroy(Banner $banner)
     {
         $banner->delete();
 
-        return redirect()->route('admin.banners.index')->with('success', '膼茫 x贸a banner.');
+        return redirect()->route('admin.banners.index')->with('success', 'Đã xóa banner.');
     }
 
     private function validated(Request $request): array

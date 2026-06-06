@@ -30,7 +30,7 @@ class VehicleCategoryController extends Controller
     {
         VehicleCategory::create($this->validated($request));
 
-        return redirect()->route('admin.vehicle-categories.index')->with('success', '膼茫 t岷 d貌ng xe.');
+        return redirect()->route('admin.vehicle-categories.index')->with('success', __('app.messages.create_success'));
     }
 
     public function edit(VehicleCategory $vehicleCategory)
@@ -46,14 +46,14 @@ class VehicleCategoryController extends Controller
     {
         $vehicleCategory->update($this->validated($request, $vehicleCategory->id));
 
-        return redirect()->route('admin.vehicle-categories.index')->with('success', '膼茫 c岷璸 nh岷璽 d貌ng xe.');
+        return redirect()->route('admin.vehicle-categories.index')->with('success', __('app.messages.update_success'));
     }
 
     public function destroy(VehicleCategory $vehicleCategory)
     {
         $vehicleCategory->delete();
 
-        return redirect()->route('admin.vehicle-categories.index')->with('success', '膼茫 x贸a d貌ng xe.');
+        return redirect()->route('admin.vehicle-categories.index')->with('success', __('app.messages.delete_success'));
     }
 
     private function validated(Request $request, ?int $id = null): array

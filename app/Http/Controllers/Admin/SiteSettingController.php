@@ -28,7 +28,7 @@ class SiteSettingController extends Controller
     {
         SiteSetting::create($this->validated($request));
 
-        return redirect()->route('admin.site-settings.index')->with('success', '膼茫 t岷 c岷 h矛nh.');
+        return redirect()->route('admin.site-settings.index')->with('success', __('app.messages.create_success'));
     }
 
     public function edit(SiteSetting $siteSetting)
@@ -43,14 +43,14 @@ class SiteSettingController extends Controller
     {
         $siteSetting->update($this->validated($request, $siteSetting->id));
 
-        return redirect()->route('admin.site-settings.index')->with('success', '膼茫 c岷璸 nh岷璽 c岷 h矛nh.');
+        return redirect()->route('admin.site-settings.index')->with('success', __('app.messages.update_success'));
     }
 
     public function destroy(SiteSetting $siteSetting)
     {
         $siteSetting->delete();
 
-        return redirect()->route('admin.site-settings.index')->with('success', '膼茫 x贸a c岷 h矛nh.');
+        return redirect()->route('admin.site-settings.index')->with('success', __('app.messages.delete_success'));
     }
 
     private function validated(Request $request, ?int $id = null): array

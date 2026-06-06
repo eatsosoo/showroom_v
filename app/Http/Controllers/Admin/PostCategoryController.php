@@ -29,7 +29,7 @@ class PostCategoryController extends Controller
     {
         PostCategory::create($this->validated($request));
 
-        return redirect()->route('admin.post-categories.index')->with('success', '膼茫 t岷 danh m峄.');
+        return redirect()->route('admin.post-categories.index')->with('success', 'Đã tạo danh mục mới.');
     }
 
     public function edit(PostCategory $postCategory)
@@ -44,14 +44,14 @@ class PostCategoryController extends Controller
     {
         $postCategory->update($this->validated($request, $postCategory->id));
 
-        return redirect()->route('admin.post-categories.index')->with('success', '膼茫 c岷璸 nh岷璽 danh m峄.');
+        return redirect()->route('admin.post-categories.index')->with('success', 'Đã cập nhật danh mục.');
     }
 
     public function destroy(PostCategory $postCategory)
     {
         $postCategory->delete();
 
-        return redirect()->route('admin.post-categories.index')->with('success', '膼茫 x贸a danh m峄.');
+        return redirect()->route('admin.post-categories.index')->with('success', 'Đã xóa danh mục.');
     }
 
     private function validated(Request $request, ?int $id = null): array

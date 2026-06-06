@@ -32,7 +32,7 @@ class RolePermissionController extends Controller
 
         Role::create($data);
 
-        return back()->with('success', '膼茫 t岷 role.');
+        return back()->with('success', 'Đã tạo role mới.');
     }
 
     public function updateRolePermissions(Request $request, Role $role): RedirectResponse
@@ -44,7 +44,7 @@ class RolePermissionController extends Controller
 
         $role->permissions()->sync($data['permissions'] ?? []);
 
-        return back()->with('success', '膼茫 c岷璸 nh岷璽 quy峄乶 cho role.');
+        return back()->with('success', 'Đã cập nhật quyền cho role.');
     }
 
     public function storePermission(Request $request): RedirectResponse
@@ -59,6 +59,6 @@ class RolePermissionController extends Controller
 
         Permission::create($data);
 
-        return back()->with('success', '膼茫 t岷 permission.');
+        return back()->with('success', 'Đã tạo permission mới.');
     }
 }

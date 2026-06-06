@@ -128,5 +128,8 @@ return [
         'lead_received' => 'Your information has been received.',
         'login_failed' => 'Email or password is incorrect.',
         'profile_updated' => 'Profile updated.',
+        'create_success' => 'Created successfully.',
+        'update_success' => 'Updated successfully.',
+        'delete_success' => 'Deleted successfully.',
     ],
 ];

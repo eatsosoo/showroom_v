@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         Post::create($this->validated($request));
 
-        return redirect()->route('admin.posts.index')->with('success', '膼茫 t岷 b脿i vi岷縯.');
+        return redirect()->route('admin.posts.index')->with('success', 'Đã tạo bài viết mới.');
     }
 
     public function edit(Post $post)
@@ -47,14 +47,14 @@ class PostController extends Controller
     {
         $post->update($this->validated($request, $post->id));
 
-        return redirect()->route('admin.posts.index')->with('success', '膼茫 c岷璸 nh岷璽 b脿i vi岷縯.');
+        return redirect()->route('admin.posts.index')->with('success', 'Đã cập nhật bài viết.');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('success', '膼茫 x贸a b脿i vi岷縯.');
+        return redirect()->route('admin.posts.index')->with('success', 'Đã xóa bài viết.');
     }
 
     private function validated(Request $request, ?int $id = null): array

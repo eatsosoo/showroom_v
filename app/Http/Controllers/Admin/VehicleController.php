@@ -31,7 +31,7 @@ class VehicleController extends Controller
     {
         Vehicle::create($this->validated($request));
 
-        return redirect()->route('admin.vehicles.index')->with('success', '膼茫 t岷 s岷 ph岷﹎ xe.');
+        return redirect()->route('admin.vehicles.index')->with('success', 'Đã tạo xe mới.');
     }
 
     public function edit(Vehicle $vehicle)
@@ -47,14 +47,14 @@ class VehicleController extends Controller
     {
         $vehicle->update($this->validated($request, $vehicle->id));
 
-        return redirect()->route('admin.vehicles.index')->with('success', '膼茫 c岷璸 nh岷璽 s岷 ph岷﹎ xe.');
+        return redirect()->route('admin.vehicles.index')->with('success', 'Đã cập nhật xe.');
     }
 
     public function destroy(Vehicle $vehicle)
     {
         $vehicle->delete();
 
-        return redirect()->route('admin.vehicles.index')->with('success', '膼茫 x贸a s岷 ph岷﹎ xe.');
+        return redirect()->route('admin.vehicles.index')->with('success', 'Đã xóa xe.');
     }
 
     private function validated(Request $request, ?int $id = null): array

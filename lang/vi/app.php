@@ -128,5 +128,8 @@ return [
         'lead_received' => 'Thông tin của anh/chị đã được ghi nhận.',
         'login_failed' => 'Email hoặc mật khẩu không đúng.',
         'profile_updated' => 'Đã cập nhật hồ sơ.',
+        'update_success' => 'Đã cập nhật thành công.',
+        'create_success' => 'Tạo mới thành công.',
+        'delete_success' => 'Xóa thành công.',
     ],
 ];

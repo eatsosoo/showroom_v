@@ -33,13 +33,13 @@ class LeadController extends Controller
 
         $lead->update($data);
 
-        return redirect()->route('admin.leads.show', $lead)->with('success', '膼茫 c岷璸 nh岷璽 lead.');
+        return redirect()->route('admin.leads.show', $lead)->with('success', 'Đã cập nhật lead.');
     }
 
     public function destroy(Lead $lead)
     {
         $lead->delete();
 
-        return redirect()->route('admin.leads.index')->with('success', '膼茫 x贸a lead.');
+        return redirect()->route('admin.leads.index')->with('success', 'Đã xóa lead.');
     }
 }
