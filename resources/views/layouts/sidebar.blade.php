@@ -87,7 +87,7 @@
                             'lg:justify-center' : 'justify-start'">
                             <template
                                 x-if="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen">
-                                <span>{{ $menuGroup['title'] }}</span>
+                                <span>{{ __($menuGroup['title']) }}</span>
                             </template>
                             <template x-if="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,7 +121,7 @@
                                             <span
                                                 x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                                 class="menu-item-text flex items-center gap-2">
-                                                {{ $item['name'] }}
+                                                {{ __($item['name']) }}
                                                 @if (!empty($item['new']))
                                                     <span class="absolute right-10"
                                                         :class="isActive('{{ $item['path'] ?? '' }}') ?
@@ -153,7 +153,7 @@
                                                             :class="isActive('{{ $subItem['path'] }}') ?
                                                                 'menu-dropdown-item-active' :
                                                                 'menu-dropdown-item-inactive'">
-                                                            {{ $subItem['name'] }}
+                                                            {{ __($subItem['name']) }}
                                                             <span class="flex items-center gap-1 ml-auto">
                                                                 @if (!empty($subItem['new']))
                                                                     <span
@@ -199,7 +199,7 @@
                                             <span
                                                 x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                                 class="menu-item-text flex items-center gap-2">
-                                                {{ $item['name'] }}
+                                                {{ __($item['name']) }}
                                                 @if (!empty($item['new']))
                                                     <span
                                                         class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-brand-500 text-white">
@@ -221,7 +221,7 @@
                         :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
                         'lg:justify-center' : 'justify-start'">
                         <template x-if="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen">
-                            <span>System</span>
+                            <span>{{ __('System') }}</span>
                         </template>
                         <template x-if="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen">
                             <span>...</span>
@@ -242,7 +242,7 @@
                                     </span>
                                     <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                         class="menu-item-text flex items-center gap-2">
-                                        Cấu hình website
+                                        {{ __('Cấu hình website') }}
                                     </span>
                                 </a>
                             </li>
@@ -261,7 +261,7 @@
                                     </span>
                                     <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                         class="menu-item-text flex items-center gap-2">
-                                        Phân quyền
+                                        {{ __('Phân quyền') }}
                                     </span>
                                 </a>
                             </li>

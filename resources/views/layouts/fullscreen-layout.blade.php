@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @php($siteName = \App\Models\SiteSetting::valueFor('site_name', config('app.name', 'Laravel')))
-    <title>{{ $title ?? 'Dashboard' }} | {{ $siteName }}</title>
+    <title>{{ __($title ?? 'Dashboard') }} | {{ $siteName }}</title>
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

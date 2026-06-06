@@ -9,7 +9,7 @@ class MenuHelper
         return [
             [
                 'icon' => 'dashboard',
-                'name' => 'Dashboard',
+                'name' => __('app.nav.dashboard'),
                 'subItems' => [
                     ['name' => 'Tổng quan', 'path' => '/admin'],
                 ],

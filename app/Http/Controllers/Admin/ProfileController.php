@@ -40,6 +40,6 @@ class ProfileController extends Controller
 
         $user->update($data);
 
-        return back()->with('success', 'Đã cập nhật hồ sơ.');
+        return back()->with('success', __('app.messages.profile_updated'));
     }
 }

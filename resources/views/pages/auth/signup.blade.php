@@ -17,10 +17,10 @@
                 <div class="mx-auto flex w-full max-w-md flex-1 flex-col justify-center">
                     <div class="mb-5 sm:mb-8">
                         <h1 class="text-title-sm sm:text-title-md mb-2 font-semibold text-gray-800 dark:text-white/90">
-                            Sign Up
+                            {{ __('Sign Up') }}
                         </h1>
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                            Enter your email and password to sign up!
+                            {{ __('Enter your email and password to sign up!') }}
                         </p>
                     </div>
                     <div>
@@ -33,7 +33,7 @@
                                     <path d="M5.10014 11.7305C4.91165 11.186 4.80257 10.6027 4.80257 9.99992C4.80257 9.3971 4.91165 8.81379 5.09022 8.26935L5.08523 8.1534L2.29464 6.02954L2.20333 6.0721C1.5982 7.25823 1.25098 8.5902 1.25098 9.99992C1.25098 11.4096 1.5982 12.7415 2.20333 13.9277L5.10014 11.7305Z" fill="#FBBC05" />
                                     <path d="M10.1789 4.63331C11.8554 4.63331 12.9864 5.34303 13.6312 5.93612L16.1511 3.525C14.6035 2.11528 12.5895 1.25 10.1789 1.25C6.68676 1.25 3.67088 3.21387 2.20264 6.07218L5.08953 8.26943C5.81381 6.15972 7.81776 4.63331 10.1789 4.63331Z" fill="#EB4335" />
                                 </svg>
-                                Sign up with Google
+                                {{ __('Sign up with Google') }}
                             </button>
                             <button
                                 class="inline-flex items-center justify-center gap-3 rounded-lg bg-gray-100 px-7 py-3 text-sm font-normal text-gray-700 transition-colors hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
@@ -41,7 +41,7 @@
                                     <path d="M15.6705 1.875H18.4272L12.4047 8.75833L19.4897 18.125H13.9422L9.59717 12.4442L4.62554 18.125H1.86721L8.30887 10.7625L1.51221 1.875H7.20054L11.128 7.0675L15.6705 1.875ZM14.703 16.475H16.2305L6.37054 3.43833H4.73137L14.703 16.475Z" />
                                 </svg>
 
-                                Sign up with X
+                                {{ __('Sign up with X') }}
                             </button>
                         </div>
                         <div class="relative py-3 sm:py-5">
@@ -49,7 +49,7 @@
                                 <div class="w-full border-t border-gray-200 dark:border-gray-800"></div>
                             </div>
                             <div class="relative flex justify-center text-sm">
-                                <span class="bg-white p-2 text-gray-400 sm:px-5 sm:py-2 dark:bg-gray-900">Or</span>
+                                <span class="bg-white p-2 text-gray-400 sm:px-5 sm:py-2 dark:bg-gray-900">{{ __('Or') }}</span>
                             </div>
                         </div>
                         @if ($errors->any())
@@ -64,7 +64,7 @@
                                     <!-- Name -->
                                     <div class="sm:col-span-1">
                                         <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                            Name<span class="text-error-500">*</span>
+                                            {{ __('Name') }}<span class="text-error-500">*</span>
                                         </label>
                                         <input type="text" id="name" name="name" value="{{ old('name') }}"
                                             placeholder="Enter your name"
@@ -73,7 +73,7 @@
                                     <!-- Confirm Password -->
                                     <div class="sm:col-span-1">
                                         <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                            Confirm Password<span class="text-error-500">*</span>
+                                            {{ __('Confirm Password') }}<span class="text-error-500">*</span>
                                         </label>
                                         <input type="password" id="password_confirmation" name="password_confirmation"
                                             placeholder="Confirm your password"
@@ -83,7 +83,7 @@
                                 <!-- Email -->
                                 <div>
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                        Email<span class="text-error-500">*</span>
+                                        {{ __('Email') }}<span class="text-error-500">*</span>
                                     </label>
                                     <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email"
                                         class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30" />
@@ -91,7 +91,7 @@
                                 <!-- Password -->
                                 <div>
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                        Password<span class="text-error-500">*</span>
+                                        {{ __('Password') }}<span class="text-error-500">*</span>
                                     </label>
                                     <div x-data="{ showPassword: false }" class="relative">
                                         <input :type="showPassword ? 'text' : 'password'" name="password" placeholder="Enter your password"
@@ -141,15 +141,15 @@
                                 <div>
                                     <button
                                         class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-medium text-white transition">
-                                        Sign Up
+                                        {{ __('Sign Up') }}
                                     </button>
                                 </div>
                             </div>
                         </form>
                         <div class="mt-5">
                             <p class="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
-                                Already have an account?
-                                <a href="{{ route('admin.signin') }}" class="text-brand-500 hover:text-brand-600 dark:text-brand-400">Sign In</a>
+                                {{ __('Already have an account?') }}
+                                <a href="{{ route('admin.signin') }}" class="text-brand-500 hover:text-brand-600 dark:text-brand-400">{{ __('Sign In') }}</a>
                             </p>
                         </div>
                     </div>

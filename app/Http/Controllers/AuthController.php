@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()->withErrors([
-                'email' => 'Email hoặc mật khẩu không đúng.',
+                'email' => __('app.messages.login_failed'),
             ])->onlyInput('email');
         }
 
