@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\PostCategory;
+use App\Models\Role;
 use App\Models\SiteSetting;
 use App\Models\User;
 use App\Models\Vehicle;
@@ -19,10 +21,42 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::updateOrCreate(
+        $permissions = collect([
+            ['Dashboard', 'dashboard.view', 'dashboard'],
+            ['Quản lý xe', 'vehicles.manage', 'vehicles'],
+            ['Quản lý bài viết', 'posts.manage', 'content'],
+            ['Quản lý banner', 'banners.manage', 'content'],
+            ['Quản lý lead', 'leads.manage', 'customers'],
+            ['Quản lý cấu hình', 'settings.manage', 'settings'],
+            ['Quản lý phân quyền', 'roles.manage', 'system'],
+        ])->mapWithKeys(function (array $permission) {
+            return [
+                $permission[1] => Permission::updateOrCreate(
+                    ['slug' => $permission[1]],
+                    ['name' => $permission[0], 'group' => $permission[2]]
+                ),
+            ];
+        });
+
+        $adminRole = Role::updateOrCreate(
+            ['slug' => 'admin'],
+            ['name' => 'Admin']
+        );
+        $adminRole->permissions()->sync($permissions->pluck('id'));
+
+        $writerRole = Role::updateOrCreate(
+            ['slug' => 'writer'],
+            ['name' => 'Writer']
+        );
+        $writerRole->permissions()->sync(
+            $permissions->only(['dashboard.view', 'posts.manage', 'banners.manage'])->pluck('id')
+        );
+
+        $admin = User::updateOrCreate(
             ['email' => 'test@example.com'],
             ['name' => 'Test User', 'password' => 'password']
         );
+        $admin->roles()->syncWithoutDetaching($adminRole);
 
         $family = VehicleCategory::updateOrCreate(
             ['slug' => 'dong-xe-du-lich-gia-dinh'],

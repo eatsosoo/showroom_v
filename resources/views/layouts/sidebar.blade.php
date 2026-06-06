@@ -215,12 +215,41 @@
                     </div>
                 @endforeach
             </div>
+            @if (auth()->user()?->hasPermission('roles.manage'))
+                <div class="mt-4">
+                    <h2 class="mb-4 text-xs uppercase flex leading-[20px] text-gray-400"
+                        :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
+                        'lg:justify-center' : 'justify-start'">
+                        <template x-if="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen">
+                            <span>System</span>
+                        </template>
+                        <template x-if="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen">
+                            <span>...</span>
+                        </template>
+                    </h2>
+                    <a href="{{ route('admin.roles.index') }}" class="menu-item group"
+                        :class="[
+                            isActive('/admin/roles') ? 'menu-item-active' : 'menu-item-inactive',
+                            (!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
+                            'xl:justify-center' : 'justify-start'
+                        ]">
+                        <span
+                            :class="isActive('/admin/roles') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'">
+                            {!! MenuHelper::getIconSvg('authentication') !!}
+                        </span>
+                        <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
+                            class="menu-item-text flex items-center gap-2">
+                            Phân quyền
+                        </span>
+                    </a>
+                </div>
+            @endif
         </nav>
 
         <!-- Sidebar Widget -->
-        <div x-data x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen" x-transition class="mt-auto">
+        <!-- <div x-data x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen" x-transition class="mt-auto">
             @include('layouts.sidebar-widget')
-        </div>
+        </div> -->
 
     </div>
 </aside>

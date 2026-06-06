@@ -5,12 +5,16 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\PostCategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\VehicleCategoryController;
 use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\AuthController;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::redirect('/login', '/admin/signin')->name('login');
 
 Route::get('/', function () {
     return view('client.placeholder', ['title' => 'VinFast Hải Phòng']);
@@ -32,77 +36,85 @@ Route::post('/lien-he', function (Request $request) {
 })->name('client.leads.store');
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', AdminDashboardController::class)->name('dashboard');
+    Route::middleware('guest')->group(function () {
+        Route::get('/signin', [AuthController::class, 'showLogin'])->name('signin');
+        Route::post('/signin', [AuthController::class, 'login'])->name('signin.store');
+        Route::get('/signup', [AuthController::class, 'showRegister'])->name('signup');
+        Route::post('/signup', [AuthController::class, 'register'])->name('signup.store');
+    });
 
-    Route::resource('vehicle-categories', VehicleCategoryController::class)->except('show');
-    Route::resource('vehicles', VehicleController::class)->except('show');
-    Route::resource('post-categories', PostCategoryController::class)->except('show');
-    Route::resource('posts', PostController::class)->except('show');
-    Route::resource('banners', BannerController::class)->except('show');
-    Route::resource('site-settings', SiteSettingController::class)->except('show');
-    Route::resource('leads', LeadController::class)->only(['index', 'show', 'update', 'destroy']);
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-    Route::get('/calendar', function () {
-        return view('pages.calender', ['title' => 'Calendar']);
-    })->name('calendar');
+    Route::middleware('auth')->group(function () {
+        Route::get('/', AdminDashboardController::class)->middleware('permission:dashboard.view')->name('dashboard');
 
-    Route::get('/profile', function () {
-        return view('pages.profile', ['title' => 'Profile']);
-    })->name('profile');
+        Route::resource('vehicle-categories', VehicleCategoryController::class)->except('show')->middleware('permission:vehicles.manage');
+        Route::resource('vehicles', VehicleController::class)->except('show')->middleware('permission:vehicles.manage');
+        Route::resource('post-categories', PostCategoryController::class)->except('show')->middleware('permission:posts.manage');
+        Route::resource('posts', PostController::class)->except('show')->middleware('permission:posts.manage');
+        Route::resource('banners', BannerController::class)->except('show')->middleware('permission:banners.manage');
+        Route::resource('site-settings', SiteSettingController::class)->except('show')->middleware('permission:settings.manage');
+        Route::resource('leads', LeadController::class)->only(['index', 'show', 'update', 'destroy'])->middleware('permission:leads.manage');
 
-    Route::get('/form-elements', function () {
-        return view('pages.form.form-elements', ['title' => 'Form Elements']);
-    })->name('form-elements');
+        Route::get('/roles', [RolePermissionController::class, 'index'])->middleware('permission:roles.manage')->name('roles.index');
+        Route::post('/roles', [RolePermissionController::class, 'storeRole'])->middleware('permission:roles.manage')->name('roles.store');
+        Route::put('/roles/{role}/permissions', [RolePermissionController::class, 'updateRolePermissions'])->middleware('permission:roles.manage')->name('roles.permissions.update');
+        Route::post('/permissions', [RolePermissionController::class, 'storePermission'])->middleware('permission:roles.manage')->name('permissions.store');
 
-    Route::get('/basic-tables', function () {
-        return view('pages.tables.basic-tables', ['title' => 'Basic Tables']);
-    })->name('basic-tables');
+        Route::get('/calendar', function () {
+            return view('pages.calender', ['title' => 'Calendar']);
+        })->name('calendar');
 
-    Route::get('/blank', function () {
-        return view('pages.blank', ['title' => 'Blank']);
-    })->name('blank');
+        Route::get('/profile', function () {
+            return view('pages.profile', ['title' => 'Profile']);
+        })->name('profile');
 
-    Route::get('/error-404', function () {
-        return view('pages.errors.error-404', ['title' => 'Error 404']);
-    })->name('error-404');
+        Route::get('/form-elements', function () {
+            return view('pages.form.form-elements', ['title' => 'Form Elements']);
+        })->name('form-elements');
 
-    Route::get('/line-chart', function () {
-        return view('pages.chart.line-chart', ['title' => 'Line Chart']);
-    })->name('line-chart');
+        Route::get('/basic-tables', function () {
+            return view('pages.tables.basic-tables', ['title' => 'Basic Tables']);
+        })->name('basic-tables');
 
-    Route::get('/bar-chart', function () {
-        return view('pages.chart.bar-chart', ['title' => 'Bar Chart']);
-    })->name('bar-chart');
+        Route::get('/blank', function () {
+            return view('pages.blank', ['title' => 'Blank']);
+        })->name('blank');
 
-    Route::get('/signin', function () {
-        return view('pages.auth.signin', ['title' => 'Sign In']);
-    })->name('signin');
+        Route::get('/error-404', function () {
+            return view('pages.errors.error-404', ['title' => 'Error 404']);
+        })->name('error-404');
 
-    Route::get('/signup', function () {
-        return view('pages.auth.signup', ['title' => 'Sign Up']);
-    })->name('signup');
+        Route::get('/line-chart', function () {
+            return view('pages.chart.line-chart', ['title' => 'Line Chart']);
+        })->name('line-chart');
 
-    Route::get('/alerts', function () {
-        return view('pages.ui-elements.alerts', ['title' => 'Alerts']);
-    })->name('alerts');
+        Route::get('/bar-chart', function () {
+            return view('pages.chart.bar-chart', ['title' => 'Bar Chart']);
+        })->name('bar-chart');
 
-    Route::get('/avatars', function () {
-        return view('pages.ui-elements.avatars', ['title' => 'Avatars']);
-    })->name('avatars');
+        Route::get('/alerts', function () {
+            return view('pages.ui-elements.alerts', ['title' => 'Alerts']);
+        })->name('alerts');
 
-    Route::get('/badge', function () {
-        return view('pages.ui-elements.badges', ['title' => 'Badges']);
-    })->name('badges');
+        Route::get('/avatars', function () {
+            return view('pages.ui-elements.avatars', ['title' => 'Avatars']);
+        })->name('avatars');
 
-    Route::get('/buttons', function () {
-        return view('pages.ui-elements.buttons', ['title' => 'Buttons']);
-    })->name('buttons');
+        Route::get('/badge', function () {
+            return view('pages.ui-elements.badges', ['title' => 'Badges']);
+        })->name('badges');
 
-    Route::get('/image', function () {
-        return view('pages.ui-elements.images', ['title' => 'Images']);
-    })->name('images');
+        Route::get('/buttons', function () {
+            return view('pages.ui-elements.buttons', ['title' => 'Buttons']);
+        })->name('buttons');
 
-    Route::get('/videos', function () {
-        return view('pages.ui-elements.videos', ['title' => 'Videos']);
-    })->name('videos');
+        Route::get('/image', function () {
+            return view('pages.ui-elements.images', ['title' => 'Images']);
+        })->name('images');
+
+        Route::get('/videos', function () {
+            return view('pages.ui-elements.videos', ['title' => 'Videos']);
+        })->name('videos');
+    });
 });
