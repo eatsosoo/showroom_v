@@ -36,7 +36,6 @@ class MenuHelper
                 'name' => 'Khách hàng',
                 'subItems' => [
                     ['name' => 'Lead', 'path' => '/admin/leads'],
-                    ['name' => 'Cấu hình website', 'path' => '/admin/site-settings'],
                 ],
             ],
             [
@@ -46,7 +45,7 @@ class MenuHelper
             ],
             [
                 'icon' => 'user-profile',
-                'name' => 'User Profile',
+                'name' => 'Hồ sơ',
                 'path' => '/admin/profile',
             ],
         ];

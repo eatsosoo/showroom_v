@@ -215,7 +215,7 @@
                     </div>
                 @endforeach
             </div>
-            @if (auth()->user()?->hasPermission('roles.manage'))
+            @if (auth()->user()?->hasPermission('settings.manage') || auth()->user()?->hasPermission('roles.manage'))
                 <div class="mt-4">
                     <h2 class="mb-4 text-xs uppercase flex leading-[20px] text-gray-400"
                         :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
@@ -227,21 +227,46 @@
                             <span>...</span>
                         </template>
                     </h2>
-                    <a href="{{ route('admin.roles.index') }}" class="menu-item group"
-                        :class="[
-                            isActive('/admin/roles') ? 'menu-item-active' : 'menu-item-inactive',
-                            (!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
-                            'xl:justify-center' : 'justify-start'
-                        ]">
-                        <span
-                            :class="isActive('/admin/roles') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'">
-                            {!! MenuHelper::getIconSvg('authentication') !!}
-                        </span>
-                        <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                            class="menu-item-text flex items-center gap-2">
-                            Phân quyền
-                        </span>
-                    </a>
+                    <ul class="flex flex-col gap-1">
+                        @if (auth()->user()?->hasPermission('settings.manage'))
+                            <li>
+                                <a href="{{ route('admin.site-settings.index') }}" class="menu-item group"
+                                    :class="[
+                                        isActive('/admin/site-settings') ? 'menu-item-active' : 'menu-item-inactive',
+                                        (!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
+                                        'xl:justify-center' : 'justify-start'
+                                    ]">
+                                    <span
+                                        :class="isActive('/admin/site-settings') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'">
+                                        {!! MenuHelper::getIconSvg('task') !!}
+                                    </span>
+                                    <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
+                                        class="menu-item-text flex items-center gap-2">
+                                        Cấu hình website
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()?->hasPermission('roles.manage'))
+                            <li>
+                                <a href="{{ route('admin.roles.index') }}" class="menu-item group"
+                                    :class="[
+                                        isActive('/admin/roles') ? 'menu-item-active' : 'menu-item-inactive',
+                                        (!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
+                                        'xl:justify-center' : 'justify-start'
+                                    ]">
+                                    <span
+                                        :class="isActive('/admin/roles') ? 'menu-item-icon-active' : 'menu-item-icon-inactive'">
+                                        {!! MenuHelper::getIconSvg('authentication') !!}
+                                    </span>
+                                    <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
+                                        class="menu-item-text flex items-center gap-2">
+                                        Phân quyền
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
                 </div>
             @endif
         </nav>
