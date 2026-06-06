@@ -123,6 +123,10 @@ return [
     ],
     'validation' => [
         'check_submitted_data' => 'Please check the submitted data.',
+        'image_upload_php_limit' => 'The image could not be uploaded. Please make sure PHP upload_max_filesize is greater than the selected file size.',
+        'image_file_invalid' => 'The selected file must be an image.',
+        'image_file_mimes' => 'The image must be a JPG, PNG, WebP, or SVG file.',
+        'image_file_max' => 'The image may not be greater than 4MB.',
     ],
     'messages' => [
         'lead_received' => 'Your information has been received.',
@@ -132,4 +136,37 @@ return [
         'update_success' => 'Updated successfully.',
         'delete_success' => 'Deleted successfully.',
     ],
+    'fields' => [
+        'id' => 'ID',
+        'name' => 'Name',
+        'email' => 'Email',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+        'actions' => 'Actions',
+        'title' => 'Title',
+        'category' => 'Category',
+        'status' => 'Status',
+        'image' => 'Image',
+        'data_type' => 'Data Type',
+        'value' => 'Value',
+        'label' => 'Label',
+        'group' => 'Group',
+    ],
+    'actions' => [
+        'view' => 'View',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'create' => 'Create',
+        'update' => 'Update',
+        'save' => 'Save',
+        'cancel' => 'Cancel',
+        'upload' => 'Upload',
+        'upload_image' => 'Upload image',
+    ],
+    'hints' => [
+        'vehicle_image' => 'Recommended size: 1200x800px. Supported formats: JPG, PNG.',
+        'post_image' => 'Recommended size: 1200x800px. Supported formats: JPG, PNG.',
+        'banner_image' => 'Recommended size: 1920x1080px. Supported formats: JPG, PNG.',
+        'site_setting_image' => 'Supports JPG, PNG, WebP, SVG. Max size 4MB. If you upload a new image, the value will automatically update to the image path.',
+    ]
 ];
