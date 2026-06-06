@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-            'title' => 'Bài viết',
+            'title' => 'app.pages.posts',
             'posts' => Post::with('category')->orderBy('sort_order')->latest()->paginate(20),
         ]);
     }
@@ -21,7 +21,7 @@ class PostController extends Controller
     public function create()
     {
         return view('admin.posts.form', [
-            'title' => 'Thêm bài viết',
+            'title' => 'app.pages.post_create',
             'post' => new Post(['type' => 'news', 'is_active' => true]),
             'categories' => PostCategory::orderBy('name')->get(),
         ]);
@@ -31,13 +31,13 @@ class PostController extends Controller
     {
         Post::create($this->validated($request));
 
-        return redirect()->route('admin.posts.index')->with('success', 'Đã tạo bài viết.');
+        return redirect()->route('admin.posts.index')->with('success', '膼茫 t岷 b脿i vi岷縯.');
     }
 
     public function edit(Post $post)
     {
         return view('admin.posts.form', [
-            'title' => 'Sửa bài viết',
+            'title' => 'app.pages.post_edit',
             'post' => $post,
             'categories' => PostCategory::orderBy('name')->get(),
         ]);
@@ -47,14 +47,14 @@ class PostController extends Controller
     {
         $post->update($this->validated($request, $post->id));
 
-        return redirect()->route('admin.posts.index')->with('success', 'Đã cập nhật bài viết.');
+        return redirect()->route('admin.posts.index')->with('success', '膼茫 c岷璸 nh岷璽 b脿i vi岷縯.');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('success', 'Đã xóa bài viết.');
+        return redirect()->route('admin.posts.index')->with('success', '膼茫 x贸a b脿i vi岷縯.');
     }
 
     private function validated(Request $request, ?int $id = null): array

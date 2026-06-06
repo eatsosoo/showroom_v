@@ -15,7 +15,7 @@ class RolePermissionController extends Controller
     public function index(): View
     {
         return view('admin.roles.index', [
-            'title' => 'Phân quyền',
+            'title' => 'app.pages.roles',
             'roles' => Role::with('permissions')->orderBy('name')->get(),
             'permissions' => Permission::orderBy('group')->orderBy('name')->get()->groupBy('group'),
         ]);
@@ -32,7 +32,7 @@ class RolePermissionController extends Controller
 
         Role::create($data);
 
-        return back()->with('success', 'Đã tạo role.');
+        return back()->with('success', '膼茫 t岷 role.');
     }
 
     public function updateRolePermissions(Request $request, Role $role): RedirectResponse
@@ -44,7 +44,7 @@ class RolePermissionController extends Controller
 
         $role->permissions()->sync($data['permissions'] ?? []);
 
-        return back()->with('success', 'Đã cập nhật quyền cho role.');
+        return back()->with('success', '膼茫 c岷璸 nh岷璽 quy峄乶 cho role.');
     }
 
     public function storePermission(Request $request): RedirectResponse
@@ -59,6 +59,6 @@ class RolePermissionController extends Controller
 
         Permission::create($data);
 
-        return back()->with('success', 'Đã tạo permission.');
+        return back()->with('success', '膼茫 t岷 permission.');
     }
 }

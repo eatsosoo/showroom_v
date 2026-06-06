@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function __invoke()
     {
         return view('admin.dashboard', [
-            'title' => 'Admin Dashboard',
+            'title' => 'app.pages.admin_dashboard',
             'stats' => [
                 'vehicles' => Vehicle::count(),
                 'vehicleCategories' => VehicleCategory::count(),

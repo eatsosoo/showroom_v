@@ -11,7 +11,7 @@ class LeadController extends Controller
     public function index()
     {
         return view('admin.leads.index', [
-            'title' => 'Lead khách hàng',
+            'title' => 'app.pages.leads',
             'leads' => Lead::with('vehicle')->latest()->paginate(20),
         ]);
     }
@@ -19,7 +19,7 @@ class LeadController extends Controller
     public function show(Lead $lead)
     {
         return view('admin.leads.show', [
-            'title' => 'Chi tiết lead',
+            'title' => 'app.pages.lead_detail',
             'lead' => $lead->load('vehicle'),
         ]);
     }
@@ -33,13 +33,13 @@ class LeadController extends Controller
 
         $lead->update($data);
 
-        return redirect()->route('admin.leads.show', $lead)->with('success', 'Đã cập nhật lead.');
+        return redirect()->route('admin.leads.show', $lead)->with('success', '膼茫 c岷璸 nh岷璽 lead.');
     }
 
     public function destroy(Lead $lead)
     {
         $lead->delete();
 
-        return redirect()->route('admin.leads.index')->with('success', 'Đã xóa lead.');
+        return redirect()->route('admin.leads.index')->with('success', '膼茫 x贸a lead.');
     }
 }

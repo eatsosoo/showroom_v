@@ -12,7 +12,7 @@ class VehicleCategoryController extends Controller
     public function index()
     {
         return view('admin.vehicle-categories.index', [
-            'title' => 'Dòng xe',
+            'title' => 'app.pages.vehicle_categories',
             'categories' => VehicleCategory::with('parent')->orderBy('sort_order')->latest()->paginate(20),
         ]);
     }
@@ -20,7 +20,7 @@ class VehicleCategoryController extends Controller
     public function create()
     {
         return view('admin.vehicle-categories.form', [
-            'title' => 'Thêm dòng xe',
+            'title' => 'app.pages.vehicle_category_create',
             'category' => new VehicleCategory(['is_active' => true]),
             'categories' => VehicleCategory::orderBy('name')->get(),
         ]);
@@ -30,13 +30,13 @@ class VehicleCategoryController extends Controller
     {
         VehicleCategory::create($this->validated($request));
 
-        return redirect()->route('admin.vehicle-categories.index')->with('success', 'Đã tạo dòng xe.');
+        return redirect()->route('admin.vehicle-categories.index')->with('success', '膼茫 t岷 d貌ng xe.');
     }
 
     public function edit(VehicleCategory $vehicleCategory)
     {
         return view('admin.vehicle-categories.form', [
-            'title' => 'Sửa dòng xe',
+            'title' => 'app.pages.vehicle_category_edit',
             'category' => $vehicleCategory,
             'categories' => VehicleCategory::whereKeyNot($vehicleCategory->id)->orderBy('name')->get(),
         ]);
@@ -46,14 +46,14 @@ class VehicleCategoryController extends Controller
     {
         $vehicleCategory->update($this->validated($request, $vehicleCategory->id));
 
-        return redirect()->route('admin.vehicle-categories.index')->with('success', 'Đã cập nhật dòng xe.');
+        return redirect()->route('admin.vehicle-categories.index')->with('success', '膼茫 c岷璸 nh岷璽 d貌ng xe.');
     }
 
     public function destroy(VehicleCategory $vehicleCategory)
     {
         $vehicleCategory->delete();
 
-        return redirect()->route('admin.vehicle-categories.index')->with('success', 'Đã xóa dòng xe.');
+        return redirect()->route('admin.vehicle-categories.index')->with('success', '膼茫 x贸a d貌ng xe.');
     }
 
     private function validated(Request $request, ?int $id = null): array

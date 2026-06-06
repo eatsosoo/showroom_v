@@ -63,7 +63,7 @@
             @php
                 $menuItems = [
                     [
-                        'text' => __('Edit profile'),
+                        'text' => __('app.user_menu.edit_profile'),
                         'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 fill-rule="evenodd"
@@ -75,7 +75,7 @@
                         'path' => route('admin.profile'),
                     ],
                     [
-                        'text' => __('Account settings'),
+                        'text' => __('app.user_menu.account_settings'),
                         'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                            <path
                             fill-rule="evenodd"
@@ -87,7 +87,7 @@
                         'path' => route('admin.profile'),
                     ],
                     [
-                        'text' => __('Support'),
+                        'text' => __('app.user_menu.support'),
                         'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             fill-rule="evenodd"
@@ -129,7 +129,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                     </svg>
                 </span>
-                {{ __('Sign out') }}
+                {{ __('app.auth.logout') }}
             </button>
         </form>
     </div>

@@ -11,7 +11,7 @@
                     class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
                     href="{{ url('/admin') }}"
                 >
-                    {{ __('Home') }}
+                    {{ __('app.common.home') }}
                     <svg
                         class="stroke-current"
                         width="17"

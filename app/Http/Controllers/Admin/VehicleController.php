@@ -13,7 +13,7 @@ class VehicleController extends Controller
     public function index()
     {
         return view('admin.vehicles.index', [
-            'title' => 'Sản phẩm xe',
+            'title' => 'app.pages.vehicles',
             'vehicles' => Vehicle::with('category')->orderBy('sort_order')->latest()->paginate(20),
         ]);
     }
@@ -21,7 +21,7 @@ class VehicleController extends Controller
     public function create()
     {
         return view('admin.vehicles.form', [
-            'title' => 'Thêm xe',
+            'title' => 'app.pages.vehicle_create',
             'vehicle' => new Vehicle(['is_active' => true]),
             'categories' => VehicleCategory::orderBy('name')->get(),
         ]);
@@ -31,13 +31,13 @@ class VehicleController extends Controller
     {
         Vehicle::create($this->validated($request));
 
-        return redirect()->route('admin.vehicles.index')->with('success', 'Đã tạo sản phẩm xe.');
+        return redirect()->route('admin.vehicles.index')->with('success', '膼茫 t岷 s岷 ph岷﹎ xe.');
     }
 
     public function edit(Vehicle $vehicle)
     {
         return view('admin.vehicles.form', [
-            'title' => 'Sửa xe',
+            'title' => 'app.pages.vehicle_edit',
             'vehicle' => $vehicle,
             'categories' => VehicleCategory::orderBy('name')->get(),
         ]);
@@ -47,14 +47,14 @@ class VehicleController extends Controller
     {
         $vehicle->update($this->validated($request, $vehicle->id));
 
-        return redirect()->route('admin.vehicles.index')->with('success', 'Đã cập nhật sản phẩm xe.');
+        return redirect()->route('admin.vehicles.index')->with('success', '膼茫 c岷璸 nh岷璽 s岷 ph岷﹎ xe.');
     }
 
     public function destroy(Vehicle $vehicle)
     {
         $vehicle->delete();
 
-        return redirect()->route('admin.vehicles.index')->with('success', 'Đã xóa sản phẩm xe.');
+        return redirect()->route('admin.vehicles.index')->with('success', '膼茫 x贸a s岷 ph岷﹎ xe.');
     }
 
     private function validated(Request $request, ?int $id = null): array

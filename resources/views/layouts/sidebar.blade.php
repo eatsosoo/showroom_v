@@ -221,7 +221,7 @@
                         :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
                         'lg:justify-center' : 'justify-start'">
                         <template x-if="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen">
-                            <span>{{ __('System') }}</span>
+                            <span>{{ __('app.common.system') }}</span>
                         </template>
                         <template x-if="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen">
                             <span>...</span>
@@ -242,7 +242,7 @@
                                     </span>
                                     <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                         class="menu-item-text flex items-center gap-2">
-                                        {{ __('Cấu hình website') }}
+                                        {{ __('app.nav.site_settings') }}
                                     </span>
                                 </a>
                             </li>
@@ -261,7 +261,7 @@
                                     </span>
                                     <span x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                         class="menu-item-text flex items-center gap-2">
-                                        {{ __('Phân quyền') }}
+                                        {{ __('app.nav.roles') }}
                                     </span>
                                 </a>
                             </li>

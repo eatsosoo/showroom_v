@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function show(): View
     {
-        return view('pages.profile', ['title' => 'Profile']);
+        return view('pages.profile', ['title' => 'app.pages.profile']);
     }
 
     public function update(Request $request): RedirectResponse

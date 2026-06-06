@@ -9,96 +9,93 @@ class MenuHelper
         return [
             [
                 'icon' => 'dashboard',
-                'name' => __('app.nav.dashboard'),
+                'name' => 'app.nav.dashboard',
                 'subItems' => [
-                    ['name' => 'Tổng quan', 'path' => '/admin'],
+                    ['name' => 'app.nav.overview', 'path' => '/admin'],
                 ],
             ],
             [
                 'icon' => 'ecommerce',
-                'name' => 'Xe VinFast',
+                'name' => 'app.nav.vehicles',
                 'subItems' => [
-                    ['name' => 'Sản phẩm xe', 'path' => '/admin/vehicles'],
-                    ['name' => 'Dòng xe', 'path' => '/admin/vehicle-categories'],
+                    ['name' => 'app.nav.vehicle_products', 'path' => '/admin/vehicles'],
+                    ['name' => 'app.nav.vehicle_categories', 'path' => '/admin/vehicle-categories'],
                 ],
             ],
             [
                 'icon' => 'pages',
-                'name' => 'Nội dung',
+                'name' => 'app.nav.content',
                 'subItems' => [
-                    ['name' => 'Bài viết', 'path' => '/admin/posts'],
-                    ['name' => 'Danh mục bài viết', 'path' => '/admin/post-categories'],
-                    ['name' => 'Banner', 'path' => '/admin/banners'],
+                    ['name' => 'app.nav.posts', 'path' => '/admin/posts'],
+                    ['name' => 'app.nav.post_categories', 'path' => '/admin/post-categories'],
+                    ['name' => 'app.nav.banners', 'path' => '/admin/banners'],
                 ],
             ],
             [
                 'icon' => 'support-ticket',
-                'name' => 'Khách hàng',
+                'name' => 'app.nav.customers',
                 'subItems' => [
-                    ['name' => 'Lead', 'path' => '/admin/leads'],
+                    ['name' => 'app.nav.leads', 'path' => '/admin/leads'],
                 ],
             ],
             [
                 'icon' => 'calendar',
-                'name' => 'Calendar',
+                'name' => 'app.nav.calendar',
                 'path' => '/admin/calendar',
             ],
             [
                 'icon' => 'user-profile',
-                'name' => 'Hồ sơ',
+                'name' => 'app.nav.profile',
                 'path' => '/admin/profile',
             ],
         ];
     }
-
     public static function getOthersItems()
     {
         return [
             [
                 'icon' => 'charts',
-                'name' => 'Charts',
+                'name' => 'app.nav.charts',
                 'subItems' => [
-                    ['name' => 'Line Chart', 'path' => '/admin/line-chart', 'pro' => false],
-                    ['name' => 'Bar Chart', 'path' => '/admin/bar-chart', 'pro' => false]
+                    ['name' => 'app.nav.line_chart', 'path' => '/admin/line-chart', 'pro' => false],
+                    ['name' => 'app.nav.bar_chart', 'path' => '/admin/bar-chart', 'pro' => false]
                 ],
             ],
             [
                 'icon' => 'ui-elements',
-                'name' => 'UI Elements',
+                'name' => 'app.nav.ui_elements',
                 'subItems' => [
-                    ['name' => 'Alerts', 'path' => '/admin/alerts', 'pro' => false],
-                    ['name' => 'Avatar', 'path' => '/admin/avatars', 'pro' => false],
-                    ['name' => 'Badge', 'path' => '/admin/badge', 'pro' => false],
-                    ['name' => 'Buttons', 'path' => '/admin/buttons', 'pro' => false],
-                    ['name' => 'Images', 'path' => '/admin/image', 'pro' => false],
-                    ['name' => 'Videos', 'path' => '/admin/videos', 'pro' => false],
+                    ['name' => 'app.nav.alerts', 'path' => '/admin/alerts', 'pro' => false],
+                    ['name' => 'app.nav.avatars', 'path' => '/admin/avatars', 'pro' => false],
+                    ['name' => 'app.nav.badges', 'path' => '/admin/badge', 'pro' => false],
+                    ['name' => 'app.nav.buttons', 'path' => '/admin/buttons', 'pro' => false],
+                    ['name' => 'app.nav.images', 'path' => '/admin/image', 'pro' => false],
+                    ['name' => 'app.nav.videos', 'path' => '/admin/videos', 'pro' => false],
                 ],
             ],
             [
                 'icon' => 'authentication',
-                'name' => 'Authentication',
+                'name' => 'app.nav.authentication',
                 'subItems' => [
-                    ['name' => 'Sign In', 'path' => '/admin/signin', 'pro' => false],
-                    ['name' => 'Sign Up', 'path' => '/admin/signup', 'pro' => false],
+                    ['name' => 'app.nav.sign_in', 'path' => '/admin/signin', 'pro' => false],
+                    ['name' => 'app.nav.sign_up', 'path' => '/admin/signup', 'pro' => false],
                 ],
             ],
         ];
     }
-
     public static function getMenuGroups()
     {
         return [
             [
-                'title' => 'Menu',
+                'title' => 'app.nav.menu',
                 'items' => self::getMainNavItems()
             ],
             [
-                'title' => 'Others',
+                'title' => 'app.nav.others',
                 'items' => self::getOthersItems()
             ]
         ];
     }
-
     public static function isActive($path)
     {
         return request()->is(ltrim($path, '/'));

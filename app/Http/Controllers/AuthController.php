@@ -14,7 +14,7 @@ class AuthController extends Controller
 {
     public function showLogin(): View
     {
-        return view('pages.auth.signin', ['title' => 'Sign In']);
+        return view('pages.auth.signin', ['title' => 'app.auth.sign_in']);
     }
 
     public function login(Request $request): RedirectResponse
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
     public function showRegister(): View
     {
-        return view('pages.auth.signup', ['title' => 'Sign Up']);
+        return view('pages.auth.signup', ['title' => 'app.auth.sign_up']);
     }
 
     public function register(Request $request): RedirectResponse

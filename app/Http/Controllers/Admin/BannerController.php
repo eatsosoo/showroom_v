@@ -11,7 +11,7 @@ class BannerController extends Controller
     public function index()
     {
         return view('admin.banners.index', [
-            'title' => 'Banner',
+            'title' => 'app.pages.banners',
             'banners' => Banner::orderBy('position')->orderBy('sort_order')->latest()->paginate(20),
         ]);
     }
@@ -19,7 +19,7 @@ class BannerController extends Controller
     public function create()
     {
         return view('admin.banners.form', [
-            'title' => 'Thêm banner',
+            'title' => 'app.pages.banner_create',
             'banner' => new Banner(['position' => 'home_hero', 'is_active' => true]),
         ]);
     }
@@ -28,13 +28,13 @@ class BannerController extends Controller
     {
         Banner::create($this->validated($request));
 
-        return redirect()->route('admin.banners.index')->with('success', 'Đã tạo banner.');
+        return redirect()->route('admin.banners.index')->with('success', '膼茫 t岷 banner.');
     }
 
     public function edit(Banner $banner)
     {
         return view('admin.banners.form', [
-            'title' => 'Sửa banner',
+            'title' => 'app.pages.banner_edit',
             'banner' => $banner,
         ]);
     }
@@ -43,14 +43,14 @@ class BannerController extends Controller
     {
         $banner->update($this->validated($request));
 
-        return redirect()->route('admin.banners.index')->with('success', 'Đã cập nhật banner.');
+        return redirect()->route('admin.banners.index')->with('success', '膼茫 c岷璸 nh岷璽 banner.');
     }
 
     public function destroy(Banner $banner)
     {
         $banner->delete();
 
-        return redirect()->route('admin.banners.index')->with('success', 'Đã xóa banner.');
+        return redirect()->route('admin.banners.index')->with('success', '膼茫 x贸a banner.');
     }
 
     private function validated(Request $request): array

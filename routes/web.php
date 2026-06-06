@@ -20,7 +20,7 @@ Route::redirect('/login', '/admin/signin')->name('login');
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('/', function () {
-    return view('client.placeholder', ['title' => 'VinFast Hải Phòng']);
+    return view('client.placeholder', ['title' => 'app.brand.home_title']);
 })->name('home');
 
 Route::post('/lien-he', function (Request $request) {
@@ -65,58 +65,58 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/permissions', [RolePermissionController::class, 'storePermission'])->middleware('permission:roles.manage')->name('permissions.store');
 
         Route::get('/calendar', function () {
-            return view('pages.calender', ['title' => __('app.pages.calendar')]);
+            return view('pages.calender', ['title' => 'app.pages.calendar']);
         })->name('calendar');
 
         Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
         Route::get('/form-elements', function () {
-            return view('pages.form.form-elements', ['title' => __('app.pages.form_elements')]);
+            return view('pages.form.form-elements', ['title' => 'app.pages.form_elements']);
         })->name('form-elements');
 
         Route::get('/basic-tables', function () {
-            return view('pages.tables.basic-tables', ['title' => __('app.pages.basic_tables')]);
+            return view('pages.tables.basic-tables', ['title' => 'app.pages.basic_tables']);
         })->name('basic-tables');
 
         Route::get('/blank', function () {
-            return view('pages.blank', ['title' => __('app.pages.blank')]);
+            return view('pages.blank', ['title' => 'app.pages.blank']);
         })->name('blank');
 
         Route::get('/error-404', function () {
-            return view('pages.errors.error-404', ['title' => __('app.pages.error_404')]);
+            return view('pages.errors.error-404', ['title' => 'app.pages.error_404']);
         })->name('error-404');
 
         Route::get('/line-chart', function () {
-            return view('pages.chart.line-chart', ['title' => __('app.pages.line_chart')]);
+            return view('pages.chart.line-chart', ['title' => 'app.pages.line_chart']);
         })->name('line-chart');
 
         Route::get('/bar-chart', function () {
-            return view('pages.chart.bar-chart', ['title' => __('app.pages.bar_chart')]);
+            return view('pages.chart.bar-chart', ['title' => 'app.pages.bar_chart']);
         })->name('bar-chart');
 
         Route::get('/alerts', function () {
-            return view('pages.ui-elements.alerts', ['title' => __('app.pages.alerts')]);
+            return view('pages.ui-elements.alerts', ['title' => 'app.pages.alerts']);
         })->name('alerts');
 
         Route::get('/avatars', function () {
-            return view('pages.ui-elements.avatars', ['title' => __('app.pages.avatars')]);
+            return view('pages.ui-elements.avatars', ['title' => 'app.pages.avatars']);
         })->name('avatars');
 
         Route::get('/badge', function () {
-            return view('pages.ui-elements.badges', ['title' => __('app.pages.badges')]);
+            return view('pages.ui-elements.badges', ['title' => 'app.pages.badges']);
         })->name('badges');
 
         Route::get('/buttons', function () {
-            return view('pages.ui-elements.buttons', ['title' => __('app.pages.buttons')]);
+            return view('pages.ui-elements.buttons', ['title' => 'app.pages.buttons']);
         })->name('buttons');
 
         Route::get('/image', function () {
-            return view('pages.ui-elements.images', ['title' => __('app.pages.images')]);
+            return view('pages.ui-elements.images', ['title' => 'app.pages.images']);
         })->name('images');
 
         Route::get('/videos', function () {
-            return view('pages.ui-elements.videos', ['title' => __('app.pages.videos')]);
+            return view('pages.ui-elements.videos', ['title' => 'app.pages.videos']);
         })->name('videos');
     });
 });

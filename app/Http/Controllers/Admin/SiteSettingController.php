@@ -11,7 +11,7 @@ class SiteSettingController extends Controller
     public function index()
     {
         return view('admin.site-settings.index', [
-            'title' => 'Cấu hình website',
+            'title' => 'app.pages.site_settings',
             'settings' => SiteSetting::orderBy('group')->orderBy('key')->paginate(50),
         ]);
     }
@@ -19,7 +19,7 @@ class SiteSettingController extends Controller
     public function create()
     {
         return view('admin.site-settings.form', [
-            'title' => 'Thêm cấu hình',
+            'title' => 'app.pages.site_setting_create',
             'setting' => new SiteSetting(['group' => 'general', 'type' => 'text']),
         ]);
     }
@@ -28,13 +28,13 @@ class SiteSettingController extends Controller
     {
         SiteSetting::create($this->validated($request));
 
-        return redirect()->route('admin.site-settings.index')->with('success', 'Đã tạo cấu hình.');
+        return redirect()->route('admin.site-settings.index')->with('success', '膼茫 t岷 c岷 h矛nh.');
     }
 
     public function edit(SiteSetting $siteSetting)
     {
         return view('admin.site-settings.form', [
-            'title' => 'Sửa cấu hình',
+            'title' => 'app.pages.site_setting_edit',
             'setting' => $siteSetting,
         ]);
     }
@@ -43,14 +43,14 @@ class SiteSettingController extends Controller
     {
         $siteSetting->update($this->validated($request, $siteSetting->id));
 
-        return redirect()->route('admin.site-settings.index')->with('success', 'Đã cập nhật cấu hình.');
+        return redirect()->route('admin.site-settings.index')->with('success', '膼茫 c岷璸 nh岷璽 c岷 h矛nh.');
     }
 
     public function destroy(SiteSetting $siteSetting)
     {
         $siteSetting->delete();
 
-        return redirect()->route('admin.site-settings.index')->with('success', 'Đã xóa cấu hình.');
+        return redirect()->route('admin.site-settings.index')->with('success', '膼茫 x贸a c岷 h矛nh.');
     }
 
     private function validated(Request $request, ?int $id = null): array
