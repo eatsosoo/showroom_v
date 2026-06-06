@@ -29,10 +29,10 @@
                             <td class="px-4 py-3">{{ $category->sort_order }}</td>
                             <td class="px-4 py-3">{{ $category->is_active ? 'Hiển thị' : 'Ẩn' }}</td>
                             <td class="px-4 py-3 text-right">
-                                <a class="text-brand-600" href="{{ route('admin.vehicle-categories.edit', $category) }}">Sửa</a>
+                                <a class="text-brand-600" href="{{ route('admin.vehicle-categories.edit', $category) }}">{{ __('app.actions.edit') }}</a>
                                 <form class="ml-3 inline" method="POST" action="{{ route('admin.vehicle-categories.destroy', $category) }}" onsubmit="return confirm('Xóa dòng xe này?')">
                                     @csrf @method('DELETE')
-                                    <button class="text-red-600">Xóa</button>
+                                    <button class="text-red-600">{{ __('app.actions.delete') }}</button>
                                 </form>
                             </td>
                         </tr>

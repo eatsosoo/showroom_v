@@ -29,10 +29,10 @@
                             <td class="px-4 py-3">{{ $post->published_at?->format('d/m/Y') ?: '-' }}</td>
                             <td class="px-4 py-3">{{ $post->is_active ? 'Hiển thị' : 'Ẩn' }}</td>
                             <td class="px-4 py-3 text-right">
-                                <a class="text-brand-600" href="{{ route('admin.posts.edit', $post) }}">Sửa</a>
+                                <a class="text-brand-600" href="{{ route('admin.posts.edit', $post) }}">{{ __('app.actions.edit') }}</a>
                                 <form class="ml-3 inline" method="POST" action="{{ route('admin.posts.destroy', $post) }}" onsubmit="return confirm('Xóa bài viết này?')">
                                     @csrf @method('DELETE')
-                                    <button class="text-red-600">Xóa</button>
+                                    <button class="text-red-600">{{ __('app.actions.delete') }}</button>
                                 </form>
                             </td>
                         </tr>

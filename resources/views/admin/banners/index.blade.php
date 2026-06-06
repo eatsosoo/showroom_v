@@ -29,10 +29,10 @@
                             <td class="px-4 py-3">{{ $banner->sort_order }}</td>
                             <td class="px-4 py-3">{{ $banner->is_active ? 'Hiển thị' : 'Ẩn' }}</td>
                             <td class="px-4 py-3 text-right">
-                                <a class="text-brand-600" href="{{ route('admin.banners.edit', $banner) }}">Sửa</a>
+                                <a class="text-brand-600" href="{{ route('admin.banners.edit', $banner) }}">{{ __('app.actions.edit') }}</a>
                                 <form class="ml-3 inline" method="POST" action="{{ route('admin.banners.destroy', $banner) }}" onsubmit="return confirm('Xóa banner này?')">
                                     @csrf @method('DELETE')
-                                    <button class="text-red-600">Xóa</button>
+                                    <button class="text-red-600">{{ __('app.actions.delete') }}</button>
                                 </form>
                             </td>
                         </tr>

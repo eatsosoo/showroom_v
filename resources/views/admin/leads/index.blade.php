@@ -31,7 +31,7 @@
                                 <a class="text-brand-600" href="{{ route('admin.leads.show', $lead) }}">Xem</a>
                                 <form class="ml-3 inline" method="POST" action="{{ route('admin.leads.destroy', $lead) }}" onsubmit="return confirm('Xóa lead này?')">
                                     @csrf @method('DELETE')
-                                    <button class="text-red-600">Xóa</button>
+                                    <button class="text-red-600">{{ __('app.actions.delete') }}</button>
                                 </form>
                             </td>
                         </tr>
